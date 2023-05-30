@@ -1,0 +1,286 @@
+ROCR-002-W
+10.50.29.33
+Stack ID 3
+
+Intro and Setup
+field guide: https://os.cybbh.io/public/os/latest/
+navigate to 10.50.21.26:8000
+join class W23002 password
+
+What version of PS am I using
+PS C:\> Get-Host | Select-Object Version
+
+To switch versions
+PS C:\> pwsh
+
+Primer_CLI_1. Which program starts with every CMD and PowerShell instance in Windows 7 and later?
+
+Research: https://devblogs.microsoft.com/commandline/windows-command-line-inside-the-windows-console/
+
+Answer: conhost.exe
+
+Primer_CLI_2. What Windows 10 feature supports installing Linux subsystem?
+
+Research: https://learn.microsoft.com/en-us/windows/wsl/about
+
+Answer: WSL (Windows Subsystem for Linux)
+
+Primer_CLI_3. Which Windows feature can be used to interact with any CLI on the Windows system concurrently using multiple tabs?
+
+Research: https://learn.microsoft.com/en-us/windows/terminal/
+
+Answer: Windows Terminal
+
+Primer_CLI_4. What was the default shell (command line) of Windows versions Windows 2000 through Windows 8.1?
+
+Research: https://learn.microsoft.com/en-us/windows-hardware/customize/enterprise/shell-launcher
+
+Answer: cmd.exe
+
+Primer_CLI_5. What data type do all cmd.exe commands return?
+
+Research: https://en.wikipedia.org/wiki/Comparison_of_command_shells (Hint: What data type is "text"?)
+
+Answer: string
+
+Primer_CLI_6. What framework is PowerShell built on?
+
+Research: https://en.wikipedia.org/wiki/.NET
+
+Answer: .net
+
+Primer_CLI_7. "What will all of the below give you?
+
+(get-host).version
+
+$host.version
+
+$psversiontable.psversion"
+
+Research: https://devblogs.microsoft.com/scripting/powertip-check-version-of-powershell/
+
+Answer: Powershell Version
+
+Primer_CLI_8. After PowerShell Core is installed what CLI command launches it?
+
+Research: https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.2
+
+Answer: pwsh
+
+Primer_CLI_9. "After PowerShell Core is installed you can still run the built in version of PowerShell side-by-side. What CLI command will launch the built in version?"
+
+Research: Primer_CLI_9 https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/powershell
+
+Answer: powershell.exe
+
+Windows_PowerShell_Basics_1. 
+
+What syntax do PowerShell cmdlets follow?
+
+Answer: verb-noun
+
+Windows_PowerShell_Basics_2. What PS command will list all PowerShell cmdlets?
+
+Answer: Get-Command
+
+Windows_PowerShell_Basics_3. What PowerShell command will list all verbs?
+
+Answer: Get-Verb
+
+Windows_PowerShell_Basics_4. BASH commands output strings. PowerShell commands output what data type?
+
+Answer: object
+ 
+Windows_PowerShell_Basics_5. All PowerShell objects are comprised of what two things?
+
+Flag format: things,things
+
+Answer: properties,methods
+
+Windows_PowerShell_Basics_6. What command will list all things that make up a PowerShell object?
+
+Answer: Get-Member
+
+Windows_PowerShell_Basics_7. What PowerShell command will list PowerShell aliases?
+
+Answer: Get-Alias
+
+Windows_PowerShell_Basics_8. What PowerShell command lists all of the contents of a directory?
+
+Answer: Get-ChildItem
+
+Windows_PowerShell_Help_1. What is the basic cmdlet that displays help about Windows Powershell cmdlets and concepts?
+
+Answer: Get-Help
+
+Windows_PowerShell_Help_2. PowerShell "help files" don't show the entire help file with a basic command. What switch option shows the entire help file?
+
+Answer: -Full
+
+Windows_PowerShell_Help_3. What PowerShell command will update the PowerShell "help files" to the latest version?
+
+Answer: Update-Help
+
+Windows_PowerShell_Help_5. What help switch will show you the "help files" on Microsoft's website, in your default browser?
+
+Answer: -Online
+
+Windows_PowerShell_Interaction_1. What command will start the Chrome browser on your machine?
+
+Answer: start chrome
+
+Windows_PowerShell_Interaction_2. What command using a PS Method will stop chrome?
+
+Flag is the full command.
+
+Answer: (get-process chrome).kill()
+
+Windows_PowerShell_Interaction_3. What PowerShell command (without using a method) will stop the Chrome process?
+
+Answer: Stop-Process -name chrome
+
+Windows_PowerShell_CimClasses_1.
+
+PowerShell doesn't have a native cmdlet that will give you processor information (such as get-processor or get-cpu). Knowing this information might be necessary. What command would give you information about the system's processor?
+
+Flag is the full command
+
+Answer: Get-WmiObject -Class Win32_Processor
+
+Windows_PowerShell_Logic_1. What PowerShell command will read a text file?
+
+Answer: Get-Content
+
+Windows_PowerShell_Logic_2. What PowerShell command will allow for counting lines in a file, averaging numbers, and summing numbers?
+
+Answer: Measure-Object
+
+Windows_PowerShell_Regex_1. What PowerShell command searches for text patterns in a string?
+
+Answer: Select-String
+
+Windows_PowerShell_Basics_9. Users' files are stored in their corresponding home directory. What is the literal path to all home directories on a Windows 10 system?
+
+Answer: C:\Users\
+
+Windows_PowerShell_Basics_7. How many properties are available for the get-process cmdlet?
+
+Note: Property values only
+
+Answer: 52
+
+Windows_PowerShell_Alias_3. How many aliases does PowerShell have for listing the contents of a directory?
+
+Answer: 3
+
+Windows_PowerShell_Help_4. When requesting the help file for the get-process cmdlet, what full command is the 9th example given?
+
+Answer: get-process powershell
+
+Windows_PowerShell_CimClasses_2. To complete this challenge, find the description of the Lego Land service.
+
+Get-WmiObject win32_service | ?{$_.NAME -like 'LegoLand'} | select Name,Description
+
+Answer: i_love_legos
+
+Windows_PowerShell_Logic_3. In the CTF folder on the CTF User's Desktop, count the number of words in words2.txt.
+
+(Get-Content .\words2.txt).count
+
+Answer: 5254
+
+Windows_PowerShell_Logic_4. Count the number of files in the Videos folder in the CTF user's home directory.
+
+(Get-ChildItem -Path .\Videos\).count
+
+Andwer: 925
+
+Windows_PowerShell_Logic_5. Find the only line that makes the two files in the CTF user's Downloads folder different.
+
+Hint The flag is the string (not line number).
+
+diff (Get-Content new.txt) (Get-Content old.txt))
+
+Answer: popeye
+
+Windows_PowerShell_Logic_6. The password is the 21st line from the top, in ASCII alphabetically-sorted, descending order of the words.txt file.
+
+**Note: File Location - C:\Users\CTF\Desktop\CTF
+
+(Get-Content .\words.txt | sort -Descending)[20]
+
+Answer: ZzZp
+
+Windows_PowerShell_Logic_7. Count the number of unique words in words.txt
+
+**Note: File Location - C:\Users\CTF\Desktop\CTF
+
+$A = $(foreach ($line in Get-Content .\words.txt) {$line.tolower().split(" ")}) | sort | Get-Unique
+
+$A.count
+
+Answer: 456976
+
+Windows_PowerShell_Basics_8. How many methods are available for the get-process cmdlet?
+
+Machine: Admin_Station
+
+Answer: 14
+
+Windows_Powershell_Logic_9. Count the number of folders in the Music folder in the CTF user’s profile.
+
+(get-ChildItem -Path .\Music\).count
+
+Answer: 411
+
+Windows_PowerShell_Regex_2
+10
+
+Count the number of times, case-insensitive, gaab is listed in words.txt **Note: File Location - C:\Users\CTF\Desktop\CTF
+
+(Get-Content .\words.txt | Select-String "gaab").count
+
+Answer: 1
+
+Windows_PowerShell_Regex_3. Count the number of words, case-insensitive, with either a or z in a word, in the words.txt file
+
+    Note: File Location - C:\Users\CTF\Desktop\CTF
+    Hint: There are multiple "words" on each line.
+
+$A = $(foreach ($line in Get-Content .\words.txt) {$line.tolower().split(" ")}) -match '[az]+'
+
+$A.count
+
+Answer: 160352
+
+Windows_PowerShell_Logic_8. Use a PowerShell loop to unzip the Omega file 1,000 times and read what is inside.
+
+Note: Make sure you back up the .zip file to a different directory before attempting this challenge.
+
+Omega"$n".zip
+
+for ($n = 1000; $n -gt 0; $n--){Expand-Archive .\omega"$n".zip -DestinationPath .} 
+
+Answer: king-fu
+
+Windows_PowerShell_Regex_5. Count the number of words in words.txt that meet the following criteria:
+
+    a appears at least twice consecutively
+    and is followed immediately by any of the letters a through g
+    Note: File Location - C:\Users\CTF\Desktop\CTF
+    Example: aac...aaa...
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
