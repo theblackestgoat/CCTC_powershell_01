@@ -261,7 +261,7 @@ Omega"$n".zip
 
 for ($n = 1000; $n -gt 0; $n--){Expand-Archive .\omega"$n".zip -DestinationPath .} 
 
-Answer: king-fu
+Answer: kung-fu
 
 Windows_PowerShell_Regex_5. Count the number of words in words.txt that meet the following criteria:
 
@@ -269,28 +269,12 @@ Windows_PowerShell_Regex_5. Count the number of words in words.txt that meet the
     and is followed immediately by any of the letters a through g
     Note: File Location - C:\Users\CTF\Desktop\CTF
     Example: aac...aaa...
-    
-$filePath = "C:\path\to\your\file.txt"
-$pattern = "[a-g]"
 
-# Read the content of the file
-$content = Get-Content -Path $filePath -Raw
+$pattern = "[a-g]"    
+$A = $(foreach ($line in Get-Content .\words.txt) {$line.tolower().split(" ")}) -match ".*aa$pattern*."
+$A.count
 
-# Split the content into words
-$words = $content -split '\W'
-
-# Initialize a counter
-$matchCount = 0
-
-# Loop through each word and check for the pattern
-foreach ($word in $words) {
-    if ($word -match ".*aa$pattern.*") {
-        $matchCount++
-    }
-}
-
-# Display the count
-Write-Host "Total matches found: $matchCount"
+Answer: 357
 
 
 
