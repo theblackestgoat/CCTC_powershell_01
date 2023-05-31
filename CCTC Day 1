@@ -270,7 +270,27 @@ Windows_PowerShell_Regex_5. Count the number of words in words.txt that meet the
     Note: File Location - C:\Users\CTF\Desktop\CTF
     Example: aac...aaa...
     
+$filePath = "C:\path\to\your\file.txt"
+$pattern = "[a-g]"
 
+# Read the content of the file
+$content = Get-Content -Path $filePath -Raw
+
+# Split the content into words
+$words = $content -split '\W'
+
+# Initialize a counter
+$matchCount = 0
+
+# Loop through each word and check for the pattern
+foreach ($word in $words) {
+    if ($word -match ".*aa$pattern.*") {
+        $matchCount++
+    }
+}
+
+# Display the count
+Write-Host "Total matches found: $matchCount"
 
 
 
