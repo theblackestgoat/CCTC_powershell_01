@@ -1,6 +1,9 @@
 ROCR-002-W
 10.50.29.33
 Stack ID 3
+start 2347
+registry start357
+ads start3486
 
 Intro and Setup
 field guide: https://os.cybbh.io/public/os/latest/
@@ -261,7 +264,7 @@ Omega"$n".zip
 
 for ($n = 1000; $n -gt 0; $n--){Expand-Archive .\omega"$n".zip -DestinationPath .} 
 
-Answer: kung-fu
+Answer: king-fu
 
 Windows_PowerShell_Regex_5. Count the number of words in words.txt that meet the following criteria:
 
@@ -275,6 +278,132 @@ $A = $(foreach ($line in Get-Content .\words.txt) {$line.tolower().split(" ")}) 
 $A.count
 
 Answer: 357
+
+Windows_PowerShell_Profiles_8. Challenge only allows ONE attempt
+
+Malware is running in a PowerShell profile on the File-Server. Based on PowerShell profile order of precedence (what is read first), find the correct flag.
+
+The flag is the string after the #, without the preceding space.
+
+Get-Content $PROFILE.AllUsersAllHosts
+
+Answer: I am definitely not the malware
+
+Windows_PowerShell_Profiles_1.5 Which PowerShell profile has the lowest precedence?
+
+Answer: CurrentUserCurrentHost
+
+Windows_PowerShell_Profiles_2. Which PowerShell profile has the highest precedence?
+
+Answer: AllUsersAllHosts
+
+Windows_PowerShell_Profiles_3. Which PowerShell variable stores the current user’s home directory?
+
+Answer: $HOME
+
+Windows_PowerShell_Profiles_4.
+
+Which PowerShell variable stores the installation directory for PowerShell?
+
+Answer: $PsHome
+
+Windows_PowerShell_Profiles_5. Which PowerShell variable stores the path to the "Current User, Current Host" profile?
+
+Answer: $PROFILE
+
+Windows_PowerShell_Profiles_6. What command would you run to view the help for PowerShell Profiles?
+
+Answer: Get-Help about_profiles
+
+Windows_PowerShell_Profiles_7. What command would tell you if there was a profile loaded for All Users All Hosts?
+
+Flag is the full command syntax
+
+Answer: Test-Path -Path $PROFILE.AllUsersAllHosts
+
+
+
+
+Primer_Registry_1. What Windows registry path is the Volatile Hive?
+
+Research: https://vistech.net/~champ/online-docs/books/mwin2reg/ch11-30975.html
+
+Answer: HKLM\HARDWARE
+
+Primer_Registry_2. What registry key creates the Wow6432Node to represent 32-bit applications that run on a 64-bit version of Windows?
+
+Research: https://learn.microsoft.com/en-us/troubleshoot/windows-client/application-management/wow6432node-registry-key-present-32-bit-machine
+
+Answer: HKEY_LOCAL_MACHINE\SOFTWARE
+
+Primer_Registry_3. In what registry path are the BOOT_START drivers located?
+
+Research: https://learn.microsoft.com/en-us/windows-hardware/drivers/install/hklm-system-currentcontrolset-services-registry-tree
+
+Answer: HKLM\SYSTEM\CurrentControlSet\Services
+
+Primer_Registry_4. What start value do BOOT_START drivers have in the registry?
+
+Research: https://learn.microsoft.com/en-us/windows-hardware/drivers/install/specifying-driver-load-order
+
+Answer: 0x0
+
+Primer_Registry_5. During kernel initialization, what registry location is read containing all SYSTEM_START drivers and services with a start value of 0x1?
+
+Research: https://learn.microsoft.com/en-us/windows-hardware/drivers/install/hklm-system-currentcontrolset-services-registry-tree
+
+Answer: HKLM\SYSTEM\CurrentControlSet\Services
+
+Primer_Registry_6. Auto_START drivers and services are loaded after kernel initialization. What start value do they have in the registry?
+
+Research: https://learn.microsoft.com/en-us/windows-hardware/drivers/install/specifying-driver-load-order
+
+Answer: 0x02
+
+Primer_Registry_7. What start value do DEMAND_START drivers and services have in the registry?
+
+Research: https://learn.microsoft.com/en-us/windows-hardware/drivers/install/specifying-driver-load-order
+
+Answer: 0x3
+
+Primer_Registry_8. When accessing a remote registry which are the only 2 accessible HKEYs?
+
+SYNTAX Hive, Hive
+
+Research: https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/reg-load
+
+Answer: HKLM, HKU
+
+Primer_Registry_9. What PowerShell cmdlet will list currently mapped drives?
+
+Research: https://learn.microsoft.com/en-us/powershell/scripting/samples/managing-windows-powershell-drives?view=powershell-7.2
+
+Answer: Get-PSDrive
+
+Primer_Registry_10. What is the native Windows GUI tool for managing the registry?
+
+Research: https://support.microsoft.com/en-us/windows/how-to-open-registry-editor-in-windows-10-deab38e6-91d6-e0aa-4b7c-8878d9e07b11
+
+Answer: regedit.exe
+
+Windows_Registry_Basics_1. What registry hive contains all machine settings?
+
+Answer: HKEY_LOCAL_MACHINE
+
+Windows_Registry_Basics_2. What registry hive contains all user settings?
+
+Answer: HKEY_USERS
+
+Windows_Registry_Basics_3. What registry hive contains only the currently logged-in user's settings?
+
+Answer: HKEY_CURRENT_USER
+
+Windows_Registry_Basics_4. The HKEY_CURRENT_USER registry hive is a symbolic link to another registry subkey. What is the subkey that it is linked to?
+
+Flag format: HIVE\SID.........................
+
+Answer: HKEY_USERS\S-1-5-21-105181296-3876013222-3871917967-1000
+
 
 
 
