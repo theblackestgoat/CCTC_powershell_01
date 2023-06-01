@@ -4,6 +4,7 @@ Stack ID 3
 start 2347
 registry start357
 ads start3486
+linux start5309
 
 https://vta.cybbh.space/horizon/project/instances/
 
@@ -672,26 +673,161 @@ then read the content of ex. nothing_here:hidden:$DATA
 
 Answer: P455W0RD
 
+Windows_File_System_Basics_14. There are plenty of phish in the C:\, but sometimes they're hidden in plain site.
+
+Find the phish.
+
+(This one is stupid)
+
+Find a directory with WWW
+
+in CMD, run dir /R /A
+
+Find the file with content and read it with:
+
+more *
+
+Answer: phi5hy
 
 
 
 
 
+Linux Basics 1. What command lists the contents of directories in Linux/Unix systems?
+
+Answer: ls
+
+Linux Basics 2. For the ls command, what arguments, or switch options, will allow you to print human-readable file sizes in a long-list format?
+
+The flag is entire command, including arguments
+
+Answer: ls -lh
+
+Linux Basics 3. What character will pipe the standard output from
+
+echo "I’m a plumber"
+
+to another command, as standard input?
+
+Answer: |
+
+Linux Basics 4. What argument/switch option, when used with man, will search the short descriptions and man-page-names for a keyword that you provide?
+
+The flag is the complete command, with argument/switch.
+
+Answer: man -k
+
+Linux Basics LFS Hierarchy. What is the absolute path to the root directory?
+
+Answer: /
+
+Linux Basics LFS Hierarchy2. What is the absolute path to the default location for configuration files?
+
+Answer: /etc
+
+Linux Basics LFS Hierarchy3. What is the directory that contains executable programs (binaries) which are needed in single user mode, to bring the system up or to repair it?
+
+Answer: /bin
+
+Linux Basics LFS Hierarchy4. What is the absolute path to the directory which contains non-essential binaries that are accessible by standard users as well as root?
+
+Answer: /usr/bin
+
+Linux Basics LFS Hierarchy5. An absolute path to a directory which contains binaries only accessible by the root user, or users in the root group.
+
+Answer: /sbin
+
+Linux Basics LFS Hierarchy6. What is the absolute path for the binary cat man-page?
+
+use whereis cat
+
+Answer: /usr/share/man/man1/cat.1.gz 
+
+Linux Basics LFS Hierarchy7. Search the user home directories to find the file with the second-most lines in it. Hint: Exclude the VDI file! The flag is the number of lines in the file.
+
+change to the home directory
+cd ~
+
+get the file sizes 
+ls -la
+
+get the count of lines in the documents
+wc -l 
+
+Answer: 40000
+
+Linux Basics Users and Groups1. Read the file that contains the user database for the machine. Identify a strange comment.
+
+look for weird stuff by using
+cat /etc/passwd | grep -v "nologin"
+
+Answer: Traitor
+
+Linux Basics Users and Groups2. Identify all members of the lodge group. List their names in alphabetical order with a comma in between each name.
+
+Flag Format: name,name,name
+$ awk -F':' '/lodge/{print $4}' /etc/group 
+garviel,tarik,aximand,ezekyle,sejanus,erebus 
+
+Answer: aximand,erebus,ezekyle,garviel,sejanus,tarik
+
+Linux Basics Users and Groups3. Find the user with a unique login shell.
+
+look back at Groups1
+
+Answer: nobody
+
+Linux Basics Users and Groups4. Identify the algorithm, the amount of salted characters added, and the length of the hashed password in the file that stores passwords.
+
+Hint: Research 'padding'...
+
+Flag format: algorithm,#characters,#length
+
+Answer??????????????????????????????????????????????????????????????????????????????
+
+Linux Basics Permissions1. Find the directory named Bibliotheca. Enter the absolute path to the directory.
+
+sudo find / -type d -name "Bibliotheca"
+
+Answer: /media/Bibliotheca  
+
+Linux Basics Permissions2. Identify the number of users with valid login shells, who can list the contents of the Bibliotheca directory.
+
+Answer????????????????????????????????????????????????????????????
+
+Linux Basics Regular Expressions1. Using the commands ls and grep, identify the number of directories in /etc/ that end in .d
+
+ls | grep *.d
+
+Answer: 27
+
+Linux Basics Regular Expressions2. File: home/garviel/numbers
+
+Use regular expressions to match patterns similar to an IP address.
+
+The answer is the count/number of lines that match in the file.
+
+garviel@terra:~$ grep -E -o "(^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$)" numbers | wc -l   
+
+Answer: 156   
+
+Linux Basics Regular Expressions3. File: home/garviel/numbers
+
+Use regular expressions to match valid IP addresses. The flag is the number of addresses.
+
+HINT: What are the valid numerical values of each octet in an IP address?
+
+grep -E -o "\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b" numbers | wc -l
+
+Answer: 36
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
+https://regexr.com/
+not the right thing for mac addresses
+^([0-9A-Z]{1,3}[-]){5}([0-9A-Z]{1,3})|([0-9A-Z]{1,3}\\.[0-9A-Z]{1,3}\\.[0-9A-Z]{1,})$
 
 
 
