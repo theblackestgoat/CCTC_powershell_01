@@ -5,6 +5,16 @@ start 2347
 registry start357
 ads start3486
 linux start5309
+windows boot start8633
+linux boot start3675
+windows process validity start
+windows uac start0864
+windows services start4597
+linux process validity start1640
+windows auditing and logging start3567
+linux auditing and logging start2021
+memory analysis start4477
+windows active directory enumeration start5557
 
 https://vta.cybbh.space/horizon/project/instances/
 
@@ -927,6 +937,175 @@ Sample Output
 awk 'BEGIN {FS = "\t"; OFS=","}{print $1, $2, $3, $4, $5, $6}' /home/garviel/connections > /home/garviel/connections.csv && md5sum /home/garviel/connections.csv | cut -d '' -f 1    
 
 Answer: 88d8d7ff29cac0e85c5c7f1600770dfd  /home/garviel/connections.csv  
+
+Linux Basics Regular Expressions5. File: home/garviel/numbers
+
+Use regular expressions to find valid Locally Administered or Universally Administered Unicast MAC addresses.
+
+Give the count of Locally and Universally Administered MAC addresses as the answer.
+
+HINT: What characters specifically define a Locally or Universally Administered Unicast MAC Address?
+
+garviel@terra:~$ cat numbers | egrep '^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$' | awk -F '-' {'print $1'} | awk -F '' {'print $2'} | egrep '[048C26AE]' | wc -l                                 
+356  
+
+
+
+
+
+Primer_Boot_Process_1. What is the smallest addressable unit on a hard disk?
+
+Research: https://learn.microsoft.com/en-us/windows/win32/fileio/disk-devices-and-partitions
+
+Answer: sector
+
+Primer_Boot_Process_2. What term describes a logical division of a single storage device?
+
+Research: https://learn.microsoft.com/en-us/windows/win32/fileio/disk-devices-and-partitions
+
+Answer: partition
+
+Primer_Boot_Process_3. What term describes a formatted storage device that can span 1 or more partitions, has a single file system and is assigned a drive letter?
+
+Research: https://learn.microsoft.com/en-us/windows-hardware/drivers/ifs/storage-device-stacks--storage-volumes--and-file-system-stacks
+
+Answer: volume
+
+Primer_Boot_Process_4. What CLI disk partitioning tool is available in Windows to view and manipulate both partitions and volumes?
+
+Research: https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/diskpart
+
+Answer: diskpart
+
+Primer_Boot_Process_5. Windows includes 4 critical Kernel-mode components. Which component is a matched pair with the kernel and obfuscates the hardware dependencies from the kernel?
+Kernel
+Executive
+HAL
+Device
+
+Research: https://en.wikipedia.org/wiki/Hardware_abstraction
+
+Answer: HAL (Hardware Abstraction Layer)
+
+Primer_Boot_Process_6. Windows includes 4 critical Kernel-mode components. Which component directs calls from a user-mode process to the kernel services?
+Kernel
+Executive
+HAL
+Device
+
+Research: https://en.wikipedia.org/wiki/Architecture_of_Windows_NT#Executive
+
+Answer: Executive
+
+Primer_Boot_Process_7. This provides an operating system with a software interface to a hardware device
+
+Research: https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/what-is-a-driver-
+
+Answer: driver
+
+Primer_Boot_Process_8. What are the two firmware interfaces supported by modern computers and read in the Pre-boot phase of the Windows boot process?
+
+**Hint, answer format = _______ and _______
+
+Research: https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/boot-to-uefi-mode-or-legacy-bios-mode?view=windows-11
+
+Answer: BIOS and UEFI
+
+Primer_Boot_Process_9. What is the name of the process that spawns SYSTEM?
+
+Research: https://en.wikipedia.org/wiki/Windows_NT_booting_process (Hint: What really is SYSTEM?)
+
+Answer: Ntoskrnl.exe
+
+Primer_Boot_Process_10. In Windows what does the boot sector code load into memory?
+
+**Hint - Flag Format = ________ and ________
+
+(Hint: What two things are between the MBR and the Kernel?) Research: https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/windows-boot-issues-troubleshooting
+
+Answer ??????????????????????????????????????????????????????????
+
+Primer_Boot_Process_11. In Windows 10 what is the name of the boot manager?
+
+Research: https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/windows-boot-issues-troubleshooting
+
+Answer: BOOTMGR
+
+Primer_Boot_Process_12. In Microsoft Vista and later the boot.ini file was replaced by what?
+
+Research: https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/boot-options-in-windows
+
+Answer: BCD
+
+Primer_Boot_Process_13. What is the tamper-resistant processor mounted on the motherboard used to improve the security of your PC. It's used by services like BitLocker drive encryption and Windows Hello to securely create and store cryptographic keys, and to confirm that the operating system and firmware on your device are what they're supposed to be, and haven't been tampered with.
+
+Research: https://learn.microsoft.com/en-us/windows/security/information-protection/tpm/tpm-fundamentals
+
+Answer: TPM (Trusted Platform Module)
+
+Primer_Boot_Process_14. During the Windows boot process, what starts BOOT_START device drivers and services with value of 0x0 in the registry key HKLM\SYSTEM\CurrentControlSet\Services?
+
+Research: https://www.lifewire.com/what-is-winload-exe-2626051
+
+Answer: Winload.exe
+
+Primer_Boot_Process_15. During the Windows boot process, what starts SYSTEM_START device drivers and services with hex value of 0x1 in the registry key HKLM\SYSTEM\CurrentControlSet\Services?
+
+Research: https://en.wikipedia.org/wiki/Ntoskrnl.exe
+
+Answer: ntoskrnl.exe
+
+Primer_Boot_Process_16. During the Windows boot process, services.exe starts device drivers and services on demand with what hex value in the registry key HKLM\SYSTEM\CurrentControlSet\Services?
+
+    hint syntax - #x#
+
+Research: https://winreg-kb.readthedocs.io/en/latest/sources/system-keys/Services-and-drivers.html
+
+Answer: 0x2
+
+Primer_Boot_Process_17. Starting in Windows Vista, what process spawns two additional instances (with identical names), used to initiate session 0 and session 1?
+
+Research: https://www.ghacks.net/2007/12/27/csrssexe-smssexe-and-lsassexe/ https://techcommunity.microsoft.com/t5/ask-the-performance-team/sessions-desktops-and-windows-stations/ba-p/372473
+
+Answer: smss.exe
+
+Primer_Boot_Process_18. Which Windows Vista user session is non-interactive, contains system services and processes and is isolated from the GDI (Graphical Device Interface)
+
+Research: https://techcommunity.microsoft.com/t5/ask-the-performance-team/sessions-desktops-and-windows-stations/ba-p/372473
+
+Answer: session 0
+
+Primer_Boot_Process_19. What is the boot process security feature available in UEFI systems, that only allows verified drivers to load?
+
+Research: https://learn.microsoft.com/en-us/windows-hardware/design/device-experiences/oem-secure-boot
+
+Answer: secure boot
+
+Primer_Boot_Process_20. To make booting faster, starting with Windows 8, the OS does a partial ________ of the kernel session at shutdown?
+
+Research: https://learn.microsoft.com/en-us/windows/win32/power/system-power-states
+
+Answer: hibernate
+
+Primer_Boot_Process_21. What registry key is responsible for starting services on your machine during the boot process? Flag is the full registry path.
+
+Research: https://www.picussecurity.com/resource/blog/picus-10-critical-mitre-attck-techniques-t1060-registry-run-keys-startup-folder
+
+Answer: HKLM\Software\Microsoft\Windows\CurrentVersion\RunServices
+
+Primer_Boot_Process_22. When a user logons to a Windows host, authentication will either grant the user access to the local computer only (Local Logon) or the user will also be granted access to a Windows domain (Domain Logon). Which logon will the user be authenticated via the Security Accounts Manager (SAM) database?
+
+Research: https://learn.microsoft.com/en-us/windows-server/security/windows-authentication/windows-logon-scenarios
+
+Answer: local
+
+
+
+
+
+
+
+
 
 
 
