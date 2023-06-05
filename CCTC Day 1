@@ -1189,6 +1189,115 @@ Follow these Windows Bootkit Instructions to boot the virtual image
 
 
 
+Primer_Processes_3. What is the full path to folder used when Windows redirects 32 bit applications running on a 64bit system?
+Research: https://learn.microsoft.com/en-us/windows/win32/winprog64/file-system-redirector
+Answer: C:\Windows\SysWOW64
+
+Primer_Processes_4. What Windows System Service starts the kernel and user mode subsystems?
+Research: https://en.wikipedia.org/wiki/Session_Manager_Subsystem
+Answer: smss.exe
+
+Primer_Processes_5. What Windows system process:
+    Runs in session 0
+    is responsible for enforcing the security policy on the system
+    Performs all logon functions
+    Handles password changes
+    Creates access tokens
+    Writes to the Windows Security Log
+Research: https://en.wikipedia.org/wiki/Local_Security_Authority_Subsystem_Service
+Answer: LSASS
+
+Primer_Processes_6. Which is spoolsv.exe?
+Server-mode service or User-mode service
+Research: https://learn.microsoft.com/en-us/windows-hardware/drivers/print/introduction-to-spooler-components
+Answer: Server-mode service
+
+Primer_Processes_7. Which service type is explorer.exe?
+Server-mode service or  User-mode service
+Research: https://learn.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode https://en.wikipedia.org/wiki/File_Explorer
+Answer: User-mode service
+
+Primer_Processes_8. During a network survey you observed a host running inetinfo.exe service. What type of server might you have found?
+Research: https://www.file.net/process/inetinfo.exe.html
+Answer: Microsoft Internet Information Services (IIS)
+
+Primer_Processes_9. During a reconnaissance mission you enumerated a host running the dns.exe service. Is this a user pc or a server?
+user pc or server
+Research: https://learn.microsoft.com/en-us/windows-server/networking/dns/dns-top
+Answer: Server
+
+Primer_Processes_10. A host running firefox and office 365 is most likely what type of host? Server or Client
+Research: https://www.heavy.ai/technical-glossary/client-server
+Answer: Client
+
+Primer_Processes_11. How does a User-Mode Service request resources?
+Research:https://www.educative.io/answers/what-is-user-mode-vs-kernel-mode-in-an-operating-system
+Answer: System Calls
+
+Primer_Processes_12. Passively copying currently running processes for comparison later is known as?
+Research: https://isc.sans.edu/diary/Baselining+Servers+to+Detect+Outliers/22940 https://www.sciencedirect.com/topics/computer-science/passive-fingerprinting
+Answer: baselining
+
+Primer_Processes_1. What part of the process executes?
+Research: https://learn.microsoft.com/en-us/windows/win32/procthread/processes-and-threads
+Answer: thread
+
+Primer_Processes_2. Windows has how many process priority levels?
+Research: https://learn.microsoft.com/en-us/windows/win32/procthread/scheduling-priorities
+Answer: 32
+
+Windows_Processes_Basics_1. What Sysinternals tool shows malware persistence locations in tabs within its GUI?
+ANswer: autoruns
+
+Windows_Processes_Basics_2. What Sysinternals tool is used to investigate processes?
+Answer: Process Explorer
+
+Windows_Processes_Basics_3. What Sysinternals tool can be used to investigate network connection attempts?
+Answer: TCPView
+
+Windows_Processes_Basics_4. What Sysinternals tool can view permissions?
+Answer: AccessChk
+
+Windows_Processes_Basics_5. What Sysinternals tool allows us to view and modify handles?
+Answer: Handle
+
+Windows_Processes_Basics_6. What is the default Windows user directory for files downloaded from the internet? The flag is the folder name only.
+Answer: Downloads
+
+Windows_Processes_Basics_7. What is the default Windows download directory that everyone has access to? The flag is the absolute path to the directory.
+Answer: C:\Users\Public\Downloads
+
+Windows_Processes_Basics_8. What Sysinternals tool shows service load order?
+Answer: LoadOrder
+
+Windows_Processes_Basics_9. What is the service name of Windows Defender Firewall?
+Answer: mpssvc
+
+Windows_Processes_Basics_10. What SysInternals tool reports .dlls loaded into processes?
+Answer: ListDLLs
+
+Windows_Hidden_Processes_1. There is malware on the system that is named similarly to a legitimate Windows executable. There is a .dll in the folder that the malware runs from. The flag is the name of the .dll.
+Answer: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
