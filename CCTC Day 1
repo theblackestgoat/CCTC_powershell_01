@@ -1399,14 +1399,107 @@ STATUS: Inactive
 Answer: 1182961511
 
 
+Linux Process Validity
 
+Linux Processes 1. What is the process ID (PID) of the SysV Init daemon?
+pidof init
+Answer: 1
 
+Linux Processes 2. How many child processes did SysV Init daemon spawn?
+bombadil@minas-tirith:~$ pstree -p 1
+init(1)─┬─cgmanager(1276)
+        ├─cron(1326)───cron(21925)───sh(21942)───camlindon(21955)───camlindon(21965)───sleep(22134)
+        ├─dbus-daemon(1381)
+        ├─dhclient(1072)
+        ├─dhclient(1107)
+        ├─getty(2347)
+        ├─getty(2348)
+        ├─getty(2349)
+        ├─getty(2350)
+        ├─getty(2351)
+        ├─getty(2352)
+        ├─irqbalance(1416)
+        ├─netcat(2354)
+        ├─nscd(1256)
+        ├─ntpd(1458)───{ntpd}(1480)
+        ├─orphan(22122)
+        ├─orphan(22123)
+        ├─orphan(22124)
+        ├─orphan(22125)
+        ├─rsyslogd(1280)─┬─{in:imklog}(1282)
+        │                ├─{in:imuxsock}(1281)
+        │                └─{rs:main Q:Reg}(1283)
+        ├─sauron(2353)
+        ├─sshd(2155)───sshd(21437)───sshd(21456)───bash(21459)───pstree(22135)
+        ├─systemd-logind(28002)
+        └─systemd-udevd(365)
+Answer: 24
 
+Linux Processes 3. Identify all of the arguments given to the ntpd daemon (service) using ps.
+Format: List all options with parameters (include numbers).
+bombadil@minas-tirith:/$ ps -elf | grep ntpd
+5 S ntp       1458     1  0  80   0 - 23949 -      May23 ?        00:01:00 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -u 105:109
+0 S bombadil 30969 21459  0  80   0 -  3179 -      19:18 pts/0    00:00:00 grep ntpd     
+Answer: -p /var/run/ntpd.pid -g -u 105:109
 
+Linux Processes 4. What is the parent process to Bombadil’s Bash process? (name of the binary, not the absolute path)
+bombadil@minas-tirith:~$ ps -o ppid= -p $$
+# echo $$ gives the PID of the currently running bash shell
+21456
+bombadil@minas-tirith:~$ ps -p 21456 -f
+UID        PID  PPID  C STIME TTY          TIME CMD
+bombadil 21456 21437  0 17:04 ?        00:00:00 sshd: bombadil@pts/0
+Answer: sshd
 
+Linux Processes 5. Identify the file mapped to the fourth file descriptor (handle) of the cron process.
+HINT: There might be multiple cron processes, but only one with the answer.
+Flag format: /absolute/path
+$ sudo lsof -c cron 
+Answer: /run/chron.pid (I have no idea why this is the right answer)
 
+Linux Processes 6. Identify the permissions that cron has on the file identified in Processes 5.
+HINT: Read the man page for lsof to understand permissions.
+Flag format: If more than one, list the permissions comma separated, no spaces
+bombadil@minas-tirith:/run$ ls -lisa crond.pid
+11244 4 -rw-r--r-- 1 root root 5 May 23 17:55 crond.pid  
+Answer: r,w
 
+Linux Processes 7. Identify the names of the orphan processes on the SysV system.
+NOTE: Remember, orphan processes spawn and die periodically. Try monitoring the processes list with top or htop to find them.
+Flag format: in alphabetical order with all non-alphabetic characters removed: Name,Name,Name,Name
+HINT: Only character names!
+run HTOP and look for PPID 1, get the names of the orphans
+Answer: Aragorn,BruceWayne,Eowyn,Tolkien
 
+Linux Processes 8. Locate zombie processes on the SysV system.
+Identify the zombie processes' parent process.
+NOTE: Remember, zombie processes only live until the parent process kills and removes them from the system’s process table. Try monitoring the processes list with top or htop to find them.
+Flag format: /absolute/path
+Run HTOP and look for the Z status
+Check the PPID and run ps -p <PPID> -o comm=
+funk
+which funk
+Answer: /bin/funk
+
+Linux Processes 9. Locate the strange open port on the SysV system.
+Identify the command line executable and its arguments.
+Flag format: /executable/path -arguments
+run netstat -tuln to look for and weird port activity (we see 1234 open)
+monitor HTOP to see if anything comes up
+see that someone is running netcat to open a port
+get the PID and run the following to get more inforamtion about it
+bombadil@minas-tirith:/proc$ ps -p 2354 -o pid,ppid,cmd,%cpu,%mem --no-headers && readlink -f /proc/2354/exe
+2354     1 /bin/netcat -lp 9999         0.0  0.0 
+Answer: /bin/netcat -lp 9999
+
+Linux Process Proc Dir 1. Examine the process list to find the ssh process. Then, identify the symbolic link to the absolute path for its executable in the /proc directory.
+The flag is the absolute path to the symbolic link, and the file it is linked to.
+Flag format: /absolute/path,/absolute/path
+Monitor HTOP and look for sshd, not the process
+run
+sudo ls -l /proc/<IPD>
+look for the "-->" to annotate a link
+Answer: /proc/2155/exe,/usr/sbin/sshd
 
 
 
