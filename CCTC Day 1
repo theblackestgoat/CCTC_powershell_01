@@ -1279,10 +1279,42 @@ Answer: ListDLLs
 Windows_Hidden_Processes_1. There is malware on the system that is named similarly to a legitimate Windows executable. There is a .dll in the folder that the malware runs from. The flag is the name of the .dll.
 Answer: 
 
+Windows_Hidden_Processes_3. Determine what is sending out a SYN_SENT message. The flag is the name of the executable.
+HINT: Use a Sysinternals tool.
+Use TCPView and look under the state columb for SYN_SENT
+Answer: McAfeeFireTray.exe
 
+Win_Process_Situational_Awareness_5. While examining the Windows Defender Firewall, what is the LogAllowedConnections setting set to, for the Public profile?
+Get-NetFirewallProfile -Profile Public | Select-Object -ExpandProperty LogAllowedConnections
+Answer: False
 
+Win_Process_Situational_Awareness_1. What are the permissions for NT SERVICE\TrustedInstaller on spoolsv.exe? Copy the permissions from your shell.
+HINT: Use Sysinternals tools.
+Or by using CMD...
+C:\Windows\System32\spoolsv.exe
+icacls C:\Windows\System32\spoolsv.exe
+NT SERVICE\TrustedInstaller:(F)
+BUILTIN\Administrators:(RX)
+NT AUTHORITY\SYSTEM:(RX)
+BUILTIN\Users:(RX)
+APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES:(RX)
+APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES:(RX)
+Successfully processed 1 files; Failed processing 0 files 
+Answer: full "(F)"
 
+Windows_Hidden_Processes_6. Find the McAfeeFireTray.exe. There is a file in that directory. The flag is inside.
+HINT: Use Sysinternals tools.
+Get-ChildItem -Path C:\ -Filter "McAfeeFireTray.exe" -File -Recurse -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName  
+C:\Program Files\Windows Defender Advanced Threat Protection\McAfeeFireTray.exe 
+Find a file called "It's_Here"
+Answer: StrongBad
 
+Win_Process_Situational_Awareness_4. What is the first .dll associated with winlogon.exe? Provide the name of the .dll only, not the /absolute/path
+HINT: Use Sysinternals tools.
+Find winlogon.exe in process explorer
+check properties and threads, look for the dll with the lowest TID (thread ID)
+ntdll.dll!RtlUserThreadStart+0x21
+Answer: ntdll.dll
 
 
 
