@@ -1316,11 +1316,87 @@ check properties and threads, look for the dll with the lowest TID (thread ID)
 ntdll.dll!RtlUserThreadStart+0x21
 Answer: ntdll.dll
 
+***strings***
+
+
+Windows UAC
+
+Windows_UAC_Basics_1. What Sysinternals tool will allow you to view a file's manifest?
+Answer: sigcheck
+
+Windows_UAC_Basics_2. What is the RequestedExecutionLevel for an application to run with the same permissions as the process that started it?
+Answer: asInvoker
+
+Windows_UAC_Basics_3. What RequestedExecutionLevel will prompt the user for Administrator credentials if they're not a member of the Administrator's group?
+Answer: requireAdministrator
+
+Windows_UAC_Basics_5. What registry key holds UAC values?
+Answer: HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+
+Windows_UAC_Basics_4. The flag is the RequestedExecutionLevel of the schtasks.exe file.
+PS C:\Users\andy.dwyer\Downloads> .\sigcheck.exe -m -accepteula C:\Windows\System32\schtasks.exe  
+<trustInfo xmlns="urn:schemas-microsoft-com:asm.v3">
+<security>
+<requestedPrivileges>
+<requestedExecutionLevel
+level="asInvoker"
+uiAccess="false"
+Answer: asInvoker
+
+Windows_UAC_Basics_6. Determine which UAC subkey property shows whether UAC is enabled or not. The flag is the data value in that property.
+Hint: Make sure you're on the correct box.
+REG QUERY HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\ /v EnableLUA
+HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System
+EnableLUA    REG_DWORD    0x1337  
+Answer: 0x1337
+
+Windows_UAC_Basics_7. Provide the name of the UAC [Registry subkey] property that determines what level UAC is set to for admin privileges (Example UAC levels: Default, Always, Notify).
+Answer: ConsentPromptBehaviorAdmin
+
+Windows_UAC_Basics_8. Query the registry subkey where UAC settings are stored, and provide the flag.
+PS HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies>  ls
+Answer: NiceJob
 
 
 
 
 
+Windows Services
+
+Windows_Services_Basics_1.What command-line (cmd) command will show service information?
+Answer: sc query
+
+Windows_Services_Basics_2. What command-line (cmd) command will show all services, running or not running?
+The flag is the full command, for all services.
+Answer: sc query state=all
+
+Windows_Services_Basics_3. What PowerShell command will list all services?
+Answer: Get-Service
+
+Windows_Services_Basics_4. What registry location holds all service data?
+Answer: HKLM\SYSTEM\CurrentControlSet\Services
+
+Windows_Services_Basics_5. What registry subkey holds a service's .dll location?
+The flag is the subkey name (full path not needed).
+Answer: parameters
+
+Windows_Services_Basics_6. Services have a name and display name, which could be different. What is the service name of the only Totally-Legit service?
+Get-Service -Name "Totally-Legit"
+Status   Name               DisplayName  
+------   ----               -----------
+Stopped  Legit              Totally-Legit  
+Answer: Legit
+
+Windows_Services_Basics_7. Figure out the SID of the only Totally-Legit service.
+Example: S-1-5-80-159957745-2084983471-2137709666-960844832-[1182961511]
+Submit only the [bracketed] portion of the SID.
+HINT: Run the command on the service name, not the display name.
+in cmd
+sc showsid legit
+NAME: legit
+SERVICE SID: S-1-5-80-159957745-2084983471-2137709666-960844832-1182961511
+STATUS: Inactive   
+Answer: 1182961511
 
 
 
