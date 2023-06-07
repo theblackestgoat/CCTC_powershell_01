@@ -1536,4 +1536,13 @@ grep -R netcat
 /etc/inittab:91:2345:respawn:/bin/netcat -lp 9999
 Answer: /etc/inittab,91:2345:respawn:/bin/netcat -lp 9999
 
+Linux Process Proc Dir 3. Identify one of the human-readable file handles by the other program that creates a zombie process.
+NOTE: Remember, zombie processes only live until the parent process kills them. Try monitoring the processes list with top or htop to find them.
+The flag is the text from one of the files it reads.
+Monitor HTOP for any zombie processes, once one comes up, run
+sudo lsof -p PID
+look for a file that you can cat
+cat /opt/mysoul
+Answer: and in the darkness bind them
+
 
