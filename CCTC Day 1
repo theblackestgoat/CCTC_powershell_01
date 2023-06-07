@@ -1501,6 +1501,22 @@ sudo ls -l /proc/<IPD>
 look for the "-->" to annotate a link
 Answer: /proc/2155/exe,/usr/sbin/sshd
 
+Linux Process Proc Dir 2. Identify the file that contains udp connection information. Identify the process using port 123.
+For the flag, enter:
+    Process name
+    File descriptor number for the udp socket
+    Its permissions as shown in lsof
+Flag format: name,#,permission
+Figure out what is using UDP port 123
+sudo lsof -i UDP:123
+ntpd
+sudo lsof | grep ntpd
+ntpd       1458             ntp   19u     IPv4              12333      0t0        UDP 10.3.0.7:ntp 
+ntpd = process name
+19 = file descriptor
+lsof permission = u
+Answer: ntpd,19,u
+
 
 
 
