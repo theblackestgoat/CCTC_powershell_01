@@ -1517,7 +1517,18 @@ ntpd = process name
 lsof permission = u
 Answer: ntpd,19,u
 
+Linux Processes 10. Locate the strange open port on the SysV system.
+Identify how the process persists between reboots.
+The flag is the absolute path for the file that contains the persistence mechanism, and the configuration option.
+HINT: Persistence is defined here
+Flag format: filepath,configuration_option
 
+Linux Processes 10. Locate the strange open port on the SysV system.
+Identify how the process persists between reboots.
+The flag is the absolute path for the file that contains the persistence mechanism, and the configuration option.
+HINT: Persistence is defined here
+Flag format: filepath,configuration_option
 
+grep -R netcat 
 
 
