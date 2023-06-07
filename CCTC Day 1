@@ -1212,6 +1212,43 @@ Answer: HKLM\SECURITY\Policy\PolAdtEv
 Primer_Auditing_8. Which sysinternals tool is used to parse logs?
 Answer: PsLogList
 
+Windows_Recent_Files_1. What is the registry location of recent docs for the current user?
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs
+
+Windows_Bam_1. Challenge only allows ONE attempt
+BAM settings are stored in different registry locations based on the version of Windows 10. What version of Windows 10 is workstation2 running? The answer is the 4 digit Windows 10 release (version) number.
+(Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name "ReleaseId").ReleaseId
+Answer: 1803
+
+Windows_Last_Access. Figure out the last access time of the hosts file.
+Flag format: mm/dd/yyyy
+PS C:\Windows\System32> (Get-Item -Path "C:\Windows\System32\drivers\etc\hosts").LastAccessTime 
+Tuesday, May 23, 2023 7:32:23 PM  
+Answer: 05/23/2023
+
+Windows_Prefetch_1. What is the literal path of the prefetch directory?
+Answer: C:\Windows\Prefetch
+
+Windows_Recycle_Bin_1. In the Recycle Bin, there is a file that contains the actual contents of the recycled file. What are the first two characters of this filename?
+
+Windows_UserAssist_1. What are the first 8 characters of the Globally Unique Identifier (GUID) used to list applications found in the UserAssist registry key (Windows 7 and later)?
+Answer: CEBFF5CD
+
+Windows_UserAssist_2. What cipher method are UserAssist files encoded in?
+Most commonly enciphered using XOR but...
+Answer: ROT13
+
+Windows_Logs_1. What main Windows log would show invalid login attempts?
+Answer: Security
+
+Windows_Logs_2. What main Windows log will show whether Windows updates were applied recently?
+Answer: System
+
+Windows_Logs_3. When reading logs, you may notice ... at the end of the line where the message is truncated. What format-table switch/argument will display the entire output?
+Flag format: -argument
+-AutoSize is one way to do it
+Answer: -Wrap
+
 
 
 
