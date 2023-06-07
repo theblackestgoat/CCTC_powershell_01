@@ -1528,7 +1528,12 @@ Identify how the process persists between reboots.
 The flag is the absolute path for the file that contains the persistence mechanism, and the configuration option.
 HINT: Persistence is defined here
 Flag format: filepath,configuration_option
-
+find all of the processes
+ps -aux
+see that netcat is running
+figure out that the ppid is 1, meaning that it is run from init
 grep -R netcat 
+/etc/inittab:91:2345:respawn:/bin/netcat -lp 9999
+Answer: /etc/inittab,91:2345:respawn:/bin/netcat -lp 9999
 
 
