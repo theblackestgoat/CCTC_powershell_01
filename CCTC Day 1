@@ -1249,17 +1249,38 @@ Flag format: -argument
 -AutoSize is one way to do it
 Answer: -Wrap
 
+Windows_Recent_Files_2. There is a file that was recently opened that may contain PII.
+Get the flag from the contents of the file.
+Hint: We're not interested in numbers.
+I didn't find this using the method they wanted. 
+PS C:\> Get-ChildItem 'C:\$recycle.bin' -Recurse -Verbose -Force | select FullName
+wmic useraccount where 'sid="S-1-5-21-2881336348-3190591231-4063445930-1003"' get name
+Name
+student 
+PS C:\> Get-Content 'C:\$Recycle.Bin\S-1-5-21-2881336348-3190591231-4063445930-1003\*.txt'  
+PS C:\> Get-Content 'C:\$Recycle.Bin\S-1-5-21-2881336348-3190591231-4063445930-1003\$I*.txt' 
+PS C:\> Get-Content 'C:\$Recycle.Bin\S-1-5-21-2881336348-3190591231-4063445930-1003\$I2*.txt' 
+What's going on in the directory revealed by this search?
+PS C:\> cat .\Users\student\Documents\* 
+Flag, Found A.  1 1 4 - 3 4 - 2 5 4 7          4 8 3 - 5 1 4 - 9 4 3 1 
+Answer: Flag, Found A.
 
+Windows_Prefetch_2. Enter the name of the questionable file in the prefetch folder.
+PS C:\> Get-ChildItem -Path 'C:\Windows\Prefetch\'    
+Answer: BAD_INTENTIONS.EXE-8F2806FC.pf 
 
-
-
-
-
-
-
-
-
-
+Windows_Logs_4. Check event logs for a flag string.
+Machine: file-server
+Get sysinternals
+PS C:\Users\andy.dwyer\Desktop> $wc = new-object System.Net.WebClient 
+PS C:\Users\andy.dwyer\Desktop> $wc.DownloadFile("https://download.sysinternals.com/files/SysinternalsSuite.zip",
+"$pwd\SysinternalsSuite.zip") 
+PS C:\Users\andy.dwyer\Desktop> Expand-Archive SysinternalsSuite.zip
+navigate into the sysinternals directory
+.\strings.exe C:\Windows\System32\winevt\Logs\*.evtx | Select-String "flag"   
+let this shit run until it completes
+C:\Windows\System32\winevt\Logs\System.evtx: ......................the Flag is: 3v3nt_L0g 
+Answer: 3v3nt_L0g
 
 
 
