@@ -1282,6 +1282,269 @@ let this shit run until it completes
 C:\Windows\System32\winevt\Logs\System.evtx: ......................the Flag is: 3v3nt_L0g 
 Answer: 3v3nt_L0g
 
+Windows_Browser_Artifacts_1. What Sysinternals tool will allow you to read the SQLite3 database containing the web history of chrome?
+Answer: strings.exe
+
+Windows_Browser_Artifacts_2. Find the questionable website that a user browsed to (using Chrome), that appears to be malicious. *Note: There are more than one users on the box.
+Machine: Workstation2 (ssh from Admin_Station)
+First, get sysinternals onto workstation2
+PS C:\Users\andy.dwyer\Desktop> scp -p C:\Users\Public\Desktop\SysinternalsSuite.zip andy.dwyer@10.3.0.4:/C:\Users\andy.dwyer\Downloads\
+then navigate over to the sysinternalssuite
+
+Windows_Recycle_Bin_3. Recover the flag from the Recycle Bin. Enter the name of the recycle bin file that contained the contents of the flag, and the contents of the deleted file.
+Flag format: filename,contents
+cmd
+cd C:\Recycle.Bin
+Powershell
+gci -Recurse -Verbose -Force *$r* | foreach-object {$_.Name, (get-content $_.FullName)}
+Answer: $R8SR72C.txt,DontTrashMeyo 
+
+
+Linux Auditing
+
+Linux Auditing and Logging XML 1.File: /home/garviel/output.xml
+Identify the XML element name in the output below
+<scaninfo type="syn" protocol="tcp" numservices="200" services="1-200"/>
+Flag: The element, with start and end tags
+Answer: <scaninfo/>
+
+Linux Auditing and Logging XML 2. Identify one of the XML attributes in the output below
+<scaninfo type="syn" protocol="tcp" numservices="200" services="1-200"/>
+Flag format: value="pair"
+Answer: type="syn"
+
+Linux Auditing and Logging Standards 1. What RFC is Syslog?
+Answer: 5424
+
+Linux Auditing and Logging Standards 2. Challenge only allows 3 attempts
+What is the numerical code assigned to the facility dealing with authorization?
+Numerical Code 	Facility
+0  kernel messages
+1  user-level messages
+2  mail system
+3  system daemons
+4  security/authorization messages
+5  messages made by syslogd
+6  line printer subsystem
+7  network news subsystem
+Answer: 4
+
+Linux Auditing and Logging Standards 3. Challenge only allows 3 attempts
+How many severity codes are defined in the standard that defines syslog?
+Numerical Code 	Severity
+0  Emergency
+1  Alert
+2  Critical
+3  Error
+4  Warning
+5  Notice
+6  Informational
+7  Debug
+Answer: 8
+
+Linux Auditing and Logging Standards 4. Challenge only allows 3 attempts
+What severity is assigned to system instability messages?
+Hint: Use the numerical code!
+Answer: 0
+
+Linux Auditing and Logging Syslog 1. Challenge only allows 3 attempts
+Download the attached rsyslog configuration file for the Syslog # challenges.
+In the legacy rules section of the file, what facility is logged to 0.log?
+#Legacy rules. Why do we even have these?
+#
+0.* -/var/log/0.log 
+    Selectors 	                 Action
+facility. severity       /path/to/log/location
+Answer: 0
+
+Linux Auditing and Logging Syslog 2. Challenge only allows 3 attempts
+In the legacy rules section of the file, how many severities are logged to 0.log?
+Flag: Total number of severities
+Answer: 8
+
+Linux Auditing and Logging Syslog 3. In the legacy rules section of the file, how many severities are logged to 4min.log?
+List the severities from highest severity (lowest numerical listed) to lowest severity (highest numerical listed) using their severity name.
+Flag format: name,name,name
+4.4 -/var/log/4min.log
+Answer: emergency,alert,critical,error,warning
+
+Linux Auditing and Logging Syslog 4. In the legacy rules section of the file, how many severities are logged to 4sig.log?
+List the severities from highest severity (lowest numerical listed) to lowest severity (highest numerical listed), using their severity name.
+Flag format: name,name,name
+Hint: I’m sure they made a man page for this. Read the downloaded file for some links.
+Answer: notice,informational,debug
+
+Linux Auditing and Logging Syslog 5. Challenge only allows 3 attempts
+What is being logged in not.log?
+Provide the facilities from lowest facility to highest facility numerically, and the severity being logged. (List only the first word for each.)
+Flag format: facility,facility,facility,severity
+Answer:mail,clock,ntp,notice
+
+Linux Auditing and Logging Syslog 6. Challenge only allows 3 attempts
+What facilities and what severities are being sent to a remote server over a reliable connection using port 514?
+Provide the facility names, number of severities, and the correct destination IP address.
+Flag format: F,F,#,IP
+Answer: auth,authpriv,8,10.30.0.1
+
+Linux Auditing and Logging Syslog 7. Challenge only allows ONE attempt
+Use the answer from Syslog 6 for this question.
+Do logs that match this filter ever get saved on the local machine?
+Yes
+No
+/var/log/auth.log exists so...
+Answer: yes
+
+Linux Auditing and Logging Syslog 8. What messages are being sent to 10.84.0.1?
+Provide the facility number, the number (amount) of severity codes, and Layer 4 connection type as the answer.
+Flag format: F,S,Layer 4 connection Type
+0,7,udp
+
+Linux Auditing and Logging XML 3. File: /home/garviel/output.xml
+Parse all of the IP addresses from the file using XPATH queries
+https://www.w3schools.com/xml/xpath_intro.asp
+HINT:
+    http://xpather.com/
+    http://www.whitebeam.org/library/guide/TechNotes/xpathtestbed.rhtm
+Sample Output (without piping to MD5SUM)
+ addr="XXX.xxx.xxx.xxx"
+ addr="XXX.xxx.xxx.xxx"
+ addr="XXX.xxx.xxx.xxx"
+ addr="XXX.xxx.xxx.xxx"
+ addr="XXX.xxx.xxx.xxx"
+ addr="XXX.xxx.xxx.xxx"
+--TRIMMED--
+Flag format: md5 hash of output
+garviel@terra:~$ xpath -q -e '//address/@addr' output.xml | md5sum
+Answer: 0e850f14fc192c5105955ec094287bd2 
+
+Linux Auditing and Logging XML 4. File: /home/garviel/output.xml
+    Select all of the IP addresses and ports using a single XPATH Union Statement
+    Pipe the result to md5sum for the flag
+HINT:
+    https://librarycarpentry.org/lc-webscraping/02-xpath/index.html
+Sample Output (without piping to MD5SUM)
+ addr="xx.xxx.xx.xx"
+ addr="xx.xxx.xx.xx"
+ addr="xx.xxx.xx.xx"
+ addr="xx.xxx.xx.xx"
+ portid="xx"
+ addr="10.50.29.6"
+ addr="xx.xxx.xx.xx"
+ portid="22"
+--TRIMMED--
+garviel@terra:~$ xpath -q -e '//address/@addr | //@portid' output.xml | md5sum
+Answer: ff7990139b6d09aa65afb6e069db0dec 
+
+Linux Auditing and Logging JSON 1. File: /home/garviel/conn.log
+    Use jq to pretty print the JSON file conn.log.
+    Hash the pretty-printed file with md5sum for the flag.
+Sample JSON "Pretty Print" Output (without piping to MD5SUM)
+  "ts": 1615383120.585641,
+  "uid": "C9ybUDHykHdrh0h93",
+  "id.orig_h": "10.50.24.73",
+  "id.orig_p": 38156,
+  "id.resp_h": "192.168.65.20",
+  "id.resp_p": 443,
+  "proto": "tcp",
+  "duration": 2.8133392333984375e-05,
+  "orig_bytes": 0,
+  "resp_bytes": 0,
+HINT:
+    https://jqplay.org/
+    https://docs.jsonata.org/simple
+    https://stedolan.github.io/jq/manual/
+garviel@terra:~$ cat conn.log | jq . | md5sum
+Answer: 25ebedf7442e470eaaa48b5f7d5b96f4
+
+Linux Auditing and Logging JSON 2. File : /home/garviel/conn.log
+This file is a conn.log made in Zeek (Bro) with data about TCP/IP connections.
+Use jq to locate and count the unique originating endpoint IP addresses in the file. Enter the number of unique originating IP addresses as the flag.
+Flag format: #
+HINT: Use this link to understand the JSON object’s attributes
+garviel@terra:~$ jq '."id.orig_h"' conn.log | sort | uniq | wc -l
+Answer: 31
+
+Linux Auditing and Logging JSON 3. File: /home/garviel/conn.log
+This file is a conn.log made in Zeek (Bro) with data about TCP/IP connections.
+Use jq to locate and count connections where the destination IP sent more than 40 bytes to the source IP.
+Flag format: #
+garviel@terra:~$ jq '."resp_ip_bytes" > 40' conn.log | grep "true" | wc -l
+Answer: 177
+
+Linux Auditing and Logging Whut 1. Use the log file attached to this for all Whut questions.
+How many unique users logged into this machine?
+$ cat log.txt | grep "logind"
+Answer: 3
+
+
+Linux Auditing and Logging XML 5. File: /home/garviel/output.xml
+    Select every IP address with open (in use) ports using XPATH queries and XPATH axes.
+    Pipe the result to md5sum for the flag
+Sample Output (without piping to MD5SUM)
+ addr="10.50.29.5"
+ portid="xx"
+ addr="xx.xx.xx.xx"
+ portid="xx"
+--TRIMMED--
+garviel@terra:~$ xpath -q -e "//host/ports/port/state[@state='open']/../../../address/@addr | //host/ports/port/state[@state='open']/../../port/@portid" output.xml | md5sum
+Answer: 9bda6beaf7da647f4155195885a10e5c 
+
+
+
+
+
+
+
+
+
+
+
+
+Memory Analysis
+
+
+Primer_Networking_1. What is used in Windows to implement the networking stack to enable communication with the four lowest OSI layers?
+Research: https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc958797(v=technet.10)?redirectedfrom=MSDN
+Answer: NDIS (Network Driver Interface Specification)
+
+Primer_Networking_2. What Windows cmd.exe command will display the local coputer's routing table?
+Research: https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netstat
+Answer: netstat -r
+
+Primer_Networking_3. IANA assigned TCP/UDP ports in the range of 0-1023 that are usually associated with server-side services are known as?
+Research: https://networkencyclopedia.com/well-known-port-numbers/
+Answer: well-known ports
+
+Primer_Networking_4. What term describes randomly assigned TCP/UDP ports above 1023 and are used for a short period of time (for the duration of a communication session}?
+Research: https://en.wikipedia.org/wiki/Ephemeral_port
+Answer: ephemeral
+
+Primer_Networking_5. The two words that decribe translating Host names to IP addresses or NetBIOS names to IP addresses is_____?
+Research: https://learn.microsoft.com/en-us/windows/win32/dns/name-resolution
+Answer: Name Resolution
+
+Primer_Networking_6. What is the hierarchical service/protocol that translates hostnames to IP addresses?
+Research: https://learn.microsoft.com/en-us/windows/win32/dns/dns-overview
+Answer: DNS
+
+Primer_Security_1. What is the term for the numeric value that the Windows OS uses to uniquely ID a user, group or computer?
+Answer: SID
+
+Primer_Security_2. What switch can be added to the CMD.exe command whoami, to view the SID of the current user?
+Research: https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/whoami
+Answer: /all
+
+Primer_Security_3. What is the value of a Relative Identifier (RID) assigned to the 1st user account?
+Research: https://os.cybbh.io/public/os/latest/013_memory_analysis/primer.html#_4_associate_a_user_sid_with_a_user_profile
+Answer: 1000
+
+Primer_Security_4. What is the well known RID for the Windows Built-In Administrator Local account?
+Research: https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dtyp/81d92bba-d22b-4a8c-908a-554ab29148ab
+Answer: 500
+
+
+
+
 
 
 
