@@ -1703,10 +1703,64 @@ PS C:\Users\andy.dwyer\Desktop\Memory_Analysis> .\volatility_2.6_win64_standalon
 Answer: sc query malware
 
 Windows_Malware_2. What are the last 7 digits of the memory offset for the driver used by the malware?
+PS C:\Users\andy.dwyer\Desktop\Memory_Analysis> .\volatility_2.6_win64_standalone.exe -f ".\0zapftis.vmem" --profile=WinXPSP2x86 driverscan 
+0x0000000001a498b8        3        0 0xf9eb4000     0x1500 malware              malware      \Driver\malware 
+Answer: 1a498b8
+
+Windows_Malware_3. The process running under PID 544 seems malicious. What is the md5hash of the executable?
+PS C:\Users\andy.dwyer\Desktop\Memory_Analysis> .\volatility_2.6_win64_standalone.exe -f ".\0zapftis.vmem" --profile=WinXPSP2x86 procdump -p 544 -D .
+Volatility Foundation Volatility Framework 2.6
+Process(V) ImageBase  Name                 Result
+---------- ---------- -------------------- ------
+0x817a34b0 0x4ad00000 cmd.exe              OK: executable.544.exe     
+PS C:\Users\andy.dwyer\Desktop\Memory_Analysis> Get-FileHash -Algorithm MD5 .\executable.544.exe
+Algorithm       Hash                                                                   Path
+---------       ----                                                                   ----
+MD5             6CEE14703054E226E87A963372F767AA                                       C:\Users\andy.dwyer\Desktop\Memory_Analysis\execu...     
+Answer: 6CEE14703054E226E87A963372F767AA
+
+Windows_Malware_4. What remote IP and port did the system connect to?
+Flag format: ip:port
+PS C:\Users\andy.dwyer\Desktop\Memory_Analysis> .\volatility_2.6_win64_standalone.exe -f ".\0zapftis.vmem" --profile=WinXPSP2x86 connscan   
+Volatility Foundation Volatility Framework 2.6
+Offset(P)  Local Address             Remote Address            Pid
+---------- ------------------------- ------------------------- ---
+0x01a25a50 0.0.0.0:1026              172.16.98.1:6666          1956 
 
 
 
 
+
+
+
+
+Windows Active Directory Enumeration
+
+Primer_Active_Directory_1. What is the database that is used to connect users with network resources?
+Resources https://os.cybbh.io/public/os/latest/014_windows_active_directory_enumeration/primer.html
+Answer: Active Directory
+
+Primer_Active_Directory_2. What are all things that are in active directory stored as?
+Resources https://os.cybbh.io/public/os/latest/014_windows_active_directory_enumeration/primer.html#_1_1_active_directory_structure
+Answer: Objects
+
+Primer_Active_Directory_3. What is the Active Directory component which contains formal definitions of every object class that can be created in an Active Directory forest?
+Resources https://os.cybbh.io/public/os/latest/014_windows_active_directory_enumeration/primer.html#_3_domains
+Answer: Schema
+
+Primer_Active_Directory_4. What protocol is used when accessing and updating the Active Directory?
+Resources https://www.sciencedirect.com/topics/computer-science/directory-access-protocol
+Answer: LDAP (Lightweight Directory Access Protocol)
+
+Primer_Active_Directory_5. From an Offensive perspective, what type of account is usually the main target?
+Resources https://os.cybbh.io/public/os/latest/014_windows_active_directory_enumeration/primer.html#_7_administrator_best_practices
+Answer: Administrator
+
+
+
+Primer_Active_Directory_6. Task : If an account has been inactive for a substantial amount of time what should the adminstrators do to the account?
+Resources https://os.cybbh.io/public/os/latest/014_windows_active_directory_enumeration/primer.html#_11_impact_of_group_policy_settings
+Answer: 
 
 
 
