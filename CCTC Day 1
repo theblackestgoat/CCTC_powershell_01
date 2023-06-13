@@ -1785,6 +1785,38 @@ Answer: search-adaccount
 
 Windows_AD_Search_Accounts. Find the expired accounts that aren't disabled. List the last names in Alphabetical Order, separated with a comma, and no space between.
 Flag format: name,name
+search-adccount -account expired
+Answer: krause,page
+
+Windows_AD_Search_Emails. Find the unprofessional email addresses. List the email's domain.
+PS C:\Users\andy.dwyer> Get-ADUser -Filter * -Properties EmailAddress,DisplayName, samaccountname | Select-Object emailaddress | Where-Object {$_.EmailAddress -notlike "*@mail.mil"}
+emailaddress                                                                                                                                      ------------
+CharlieB@ashleymadison.com
+Skyler01@ashleymadison.com
+Answer: ashleymadison.com
+
+Windows_AD_Search_Files. The flag is the unprofessionally-named file located somewhere on the Warrior Share.
+Connect to the Warrior Share:
+net use * "\\file-server\warrior share"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
