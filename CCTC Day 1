@@ -1836,12 +1836,37 @@ Xavier.Ibarra       description
 Raegan.Lee          description 
 Answer: ibarra,lee
 
+Windows_AD_Search_Passwords. Find the following three accounts:
+    two accounts with passwords that never expire
+    one account that has its password stored using reversible encryption
+List the last names in Alphabetical Order, comma-separated, no spaces. Do not list built-in accounts.
+Flag format: name,name,name
+passwords that never expire:
+Get-ADUser -Filter {PasswordNeverExpires -eq $true} -Properties PasswordNeverExpires | Select-Object Name, SamAccountName
+Name             SamAccountName
+----             --------------
+Eddie.Sanchez  Eddie.Sanchez
+Xavier.Ibarra  Xavier.Ibarra 
+Get-ADUser -Filter {UserAccountControl -band 128} -Properties UserAccountControl | Select-Object Name, SamAccountName
+Name             SamAccountName
+----             --------------
+Alice.Brandywine Alice.Brandywine 
+Answer: brandywine,ibarra,sanchez
 
+Windows_AD_Search_PII. The flag is the name of the file containing PII on the Warrior Share.
+Connect to the Warrior Share:
+net use * "\\file-server\warrior share"
+Search for files on the warrior share
+Get-ChildItem -Path Z:\ -include "*" -File -Recurse -ErrorAction SilentlyContinue   
+find documents and examine them, see a .xlsx
+Convert the spreadsheet to a .txt
+PS C:\Users\Public\Desktop> Install-Module -Name ImportExcel    
+PS C:\Users\Public\Desktop> Import-Module -Name ImportExcel
+PS C:\Users\Public\Desktop> Import-Excel -Path .\phone_matrix.xlsx | Out-File -FilePath ".\phone.txt"  
+Check out the document and look for PII (there is no actual PII in this document)
+Answer: phone_matrix.xlsx 
 
-
-
-
-
+Windows_Active_Directory_Basics_6. Find the short name of the domain in which this server is a part of.
 
 
 
