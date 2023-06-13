@@ -1814,6 +1814,27 @@ PS Z:\> Get-EventLog Security | Where-Object {$_.Message -match 'modified'}
 *****In order to understand what happened regarding a security event (user requesting modified permissions), I spent a great deal of time sifting through Event Logs.
 *****To answer this question, the student must transfer the file of a previous question to the host machine and examine the contents. 
 *****Running SCP commands to transfer a file related to a different question do not help the student better understand how to work within Windows Active Directory. 
+PS Z:\Brigade HQ\CMD GRP> scp -p . .\lulz.pdf andy.dwyer@10.3.0.2:/C:\Users\Public\Desktop\  
+*****Once you transfer over the PDF, you have to pull out indicators of an identity (First initial "K" and a phone number)
+PS C:\Users\andy.dwyer> Get-ADUser -Filter 'Name -like "K*"' -Properties * | Where-Object {$_.telephoneNumber -match '336.6754'}      
+Answer: Karen.Nance
+
+Windows_AD_Search_Insider_1. The flag is the name of the file where someone is requesting modified access rights.
+Connect to the Warrior Share:
+net use * "\\file-server\warrior share"
+*****This is the name of the file that had to be transferred over to answer the previous question.
+Answer: 14287.pdf
+
+Windows_AD_Search_Naming. Find the accounts that contain unprofessional information in the description.
+List the last names in Alphabetical Order, separated by a comma, with no space.
+Flag format: name,name
+*****This is another terribly worded question.
+*****After running the following command, there are two users with descriptions "description".
+*****This does not mean "unprofessional" to me. 
+PS C:\Users\andy.dwyer> Get-ADUser -filter * -Properties Description | Where-Object {$_.description -notmatch 'soldier'} | select name, description  
+Xavier.Ibarra       description 
+Raegan.Lee          description 
+Answer: ibarra,lee
 
 
 
