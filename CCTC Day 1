@@ -1756,11 +1756,36 @@ Primer_Active_Directory_5. From an Offensive perspective, what type of account i
 Resources https://os.cybbh.io/public/os/latest/014_windows_active_directory_enumeration/primer.html#_7_administrator_best_practices
 Answer: Administrator
 
-
-
 Primer_Active_Directory_6. Task : If an account has been inactive for a substantial amount of time what should the adminstrators do to the account?
 Resources https://os.cybbh.io/public/os/latest/014_windows_active_directory_enumeration/primer.html#_11_impact_of_group_policy_settings
-Answer: 
+Answer: Disable
+
+Primer_Active_Directory_7. What is the basic PowerShell cmdlet used to enumerate users?
+Resources https://os.cybbh.io/public/os/latest/014_windows_active_directory_enumeration/primer.html#_2_2_powershell
+Answer: Get-ADUser
+
+Primer_Active_Directory_8. What is the suite of tools used in CLI to enumerate users across the network?
+Resources https://os.cybbh.io/public/os/latest/014_windows_active_directory_enumeration/primer.html#_2_1_domain_service_ds_tools
+Answer: DS Tools
+
+Windows_Active_Directory_Basics_8. What is the domain portion of the following SID:
+S-1-5-21-1004336348-1177238915-682003330-1000
+Answer: 21-1004336348-1177238915-682003330
+
+Windows_Active_Directory_Basics_1. What PowerShell command will list domain groups?
+Answer: Get-ADGroup
+
+Windows_Active_Directory_Basics_2. What PowerShell command will list all users and their default properties?
+The flag is the full command with arguments.
+Answer: Get-ADUser -Filter 'Name -like "*"'
+
+Windows_Active_Directory_Basics_5. What PowerShell command will allow you to search Active Directory accounts for expired accounts without having to create a filter?
+The flag is only the command, no arguments/switches.
+Answer: search-adaccount
+
+Windows_AD_Search_Accounts. Find the expired accounts that aren't disabled. List the last names in Alphabetical Order, separated with a comma, and no space between.
+Flag format: name,name
+
 
 
 
