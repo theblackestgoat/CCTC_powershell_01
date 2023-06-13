@@ -1798,8 +1798,93 @@ Answer: ashleymadison.com
 Windows_AD_Search_Files. The flag is the unprofessionally-named file located somewhere on the Warrior Share.
 Connect to the Warrior Share:
 net use * "\\file-server\warrior share"
+PS Z:\> Get-ChildItem -Path Z:\ -include "*" -File -Recurse -ErrorAction SilentlyContinue 
+    Directory: Z:\Brigade HQ\CMD GRP
+    Mode                LastWriteTime         Length Name
+    ----                -------------         ------ ----
+    -a----        5/23/2023   5:59 PM        1671800 lulz.pdf 
+Answer: lulz.pdf
+
+Windows_AD_Search_Insider_2. The flag is the name of the user who is requesting modified access rights.
+Connect to the Warrior Share:
+net use * "\\file-server\warrior share"
+PS Z:\> Get-EventLog Security -Newest 10 | Where-Object {$_.InstanceId -eq 4672} | Format-List 
+PS Z:\> Get-EventLog Security | Where-Object {$_.Message -match 'modified'}  
+*****This is the opposite of a good practice question. The entire point of this section is to gain greater familiarity with enumerating Windows Active Directory. 
+*****In order to understand what happened regarding a security event (user requesting modified permissions), I spent a great deal of time sifting through Event Logs.
+*****To answer this question, the student must transfer the file of a previous question to the host machine and examine the contents. 
+*****Running SCP commands to transfer a file related to a different question do not help the student better understand how to work within Windows Active Directory. 
 
 
+
+
+
+
+
+
+
+
+________________________OS REVIEW________________________
+
+Schedule:
+Wed: 0730 - show up for WOPD
+ ~0830 - take test
+ test is 3 hours long, 10 questions, req 70%
+*if there are no re-tests:
+Thu: "University time / don't drink until 1640"
+Fri: "University time / don't drink until 1640"
+*
+
+
+linux connections
+
+look up arguments
+sudo netstat
+
+linux malicious process
+
+ps -elf | grep "something you think is bad"
+
+linux cron jobs
+
+3 places to run cron jobs without rights
+sudo ls -l /var/ cron directories
+
+linux persistence
+
+bash profile, .profile
+familiarize yourself with linux profiles
+
+windows network connections enumeration
+
+netstat -ano 
+
+windows malicious process
+
+get-process -id <pid>
+
+windows malicious artifacts
+
+get-itemproperty "registry Hive:\Key\Key\Key\"
+
+get-childitem C:\Windows\prefetch
+
+windows persistence
+
+get-item "registry Hive:\Key\Key\Key\"
+
+windows scheduled tasks
+
+get-scheduledtask | select -First #
+
+(CMD) 
+schtask /query /v /TN <Suspicious Name> /FO list
+
+windows powershell profiles
+
+get-childitem $profile.<profilename>
+
+get-content $pshome\<ps profile name>
 
 
 
